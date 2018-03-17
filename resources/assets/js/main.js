@@ -1,7 +1,8 @@
 import Vue from 'vue'
-import store from './vuex/store'
 
 import App from './components/app.vue'
+import store from './vuex/store'
+
 import growl from 'growl-alert'
 import 'growl-alert/dist/growl-alert.css'
 

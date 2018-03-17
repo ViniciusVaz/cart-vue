@@ -7,6 +7,7 @@
 </template>
 <script>
     import ProductItem from './product-item.vue'
+    import ProductService from '../../../../services/products'
 
     export default {
         data () {
@@ -14,13 +15,19 @@
                 products: []
             }
         },
-        methods: {
-            init () {
-               this.products = this.$store.state.products
-            }
-        },
         mounted () {
             this.init()
+        },
+        methods: {
+            init () {
+                return ProductService.getProducts().then(result => {
+                    if(result.status == 200) {
+                        this.products = result.data.products
+                    }
+                }).catch(error => {
+                    console.log(error)
+                })
+            }
         },
         components: {
             ProductItem

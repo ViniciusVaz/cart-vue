@@ -1,14 +1,20 @@
 <template>
     <div>
+        <cart-list></cart-list>
+        <header-store></header-store>
         <product-list></product-list>
     </div>
 </template>
 <script>
-    import ProductList from "_components/product/product-list.vue"
+    import HeaderStore from "./header-store.vue"
+    import ProductList from "./product/product-list.vue"
+    import CartList from "./cart/cart-list.vue"
 
     export default {
         components: {
-            ProductList
+            ProductList,
+            HeaderStore,
+            CartList
         }
     }
 </script>
