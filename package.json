@@ -25,7 +25,16 @@
     "webpack": "^2.2.1"
   },
   "devDependencies": {
+    "avoriaz": "^6.3.0",
     "css-loader": "^0.28.11",
+    "jasmine-core": "^3.1.0",
+    "karma": "^2.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-ie-launcher": "^1.0.0",
+    "karma-jasmine": "^1.1.1",
+    "karma-safari-launcher": "^1.0.0",
+    "karma-webpack": "^2.0.13",
     "webpack-dev-server": "^2.3.0"
   },
   "scripts": {
