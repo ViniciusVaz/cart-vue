@@ -1,6 +1,6 @@
 <template>
-    <div class="cart-item">
-        <div class="cart-item__remove" @click="removeProduct(product)">
+    <div :class="['cart-item' , disabled ? 'cart-item--disabled' : '']">
+        <div class="cart-item__remove" @click="removeProduct(product)" @mouseover="hoverRemoveItem()" @mouseleave="hoverRemoveItem()">
         </div>
         <div class="cart-item__image">
             <img src="/images/camiseta.jpg" alt="">
@@ -26,10 +26,18 @@
     import formatPrice from '_helpers/index'
 
     export default {
+        data () {
+            return {
+                disabled: false
+            }
+        },
         methods: {
             ...mapActions([
                 'removeProduct'
             ]),
+            hoverRemoveItem() {
+                return this.disabled = !this.disabled
+            },
             formatPrice
         },
         props: {
@@ -43,12 +51,43 @@
 <style lang="scss" scoped>
     .cart-item {
         font-family: 'Open-sans', sans-serif;
-        padding: 15px 0;
-        margin: 0 20px;
-        border-bottom: 2px solid #131316;
+        padding: 15px 20px;
         display: flex;
         align-items: center;
         position: relative;
+
+        &::after {
+            content: '';
+            width: calc(100% - 40px);
+            height: 2px;
+            background-color: #131316;
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+        }
+
+        &--disabled {
+            background-color: #131316;
+
+            .cart-item {
+                &__details {
+                    &__name {
+                        text-decoration: line-through;
+                    }
+
+                    .info {
+                        &__quantity {
+                            text-decoration: line-through;
+                        }
+                        &__price {
+                            > span {
+                                text-decoration: line-through;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         &__image {
             width: 55px;
@@ -111,7 +150,7 @@
             height: 16px;
             position: absolute;
             top: 15px;
-            right: 0;
+            right: 20px;
             cursor: pointer;
 
             &:hover {

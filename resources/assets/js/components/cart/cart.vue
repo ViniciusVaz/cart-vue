@@ -64,6 +64,7 @@
         transform: translateX(100%);
         transition: all .4s ease;
         z-index: 1000;
+        border-left: 2px solid rgba(32, 32, 37, 0.2);
 
         @media screen and (max-width: 600px) {
             width: 100%;
