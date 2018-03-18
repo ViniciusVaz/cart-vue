@@ -12,7 +12,7 @@
                     {{ product.currencyFormat }}
                 </span>
                 <span class="price__value">
-                    {{ product.price }}
+                    {{ formatPrice(product.price) }}
                 </span>
             </div>
         </div>
@@ -23,6 +23,7 @@
 </template>
 <script>
     import { mapActions } from 'vuex'
+    import formatPrice from '_helpers/index'
 
     export default {
         name: "Product-Item",
@@ -35,7 +36,8 @@
         methods: {
             ...mapActions([
                 'addProduct'
-            ])
+            ]),
+            formatPrice
         }
     }
 </script>

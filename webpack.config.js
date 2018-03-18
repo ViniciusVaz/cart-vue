@@ -1,6 +1,6 @@
 const path = require( 'path' )
 
-const base_path = path.resolve(__dirname, 'resources/assets')
+const base_path = path.resolve(__dirname, 'resources', 'assets')
 
 module.exports = {
     entry: path.join(base_path, 'js', 'main.js'),
@@ -13,7 +13,10 @@ module.exports = {
     devtool: 'source-map',
     resolve: {
         alias: {
-            _components: path.join(base_path, 'js/components')
+            _components: path.join(base_path, 'js', 'components'),
+            _helpers: path.join(base_path, 'js', 'helpers'),
+            _npm: path.join(__dirname, 'node_modules'),
+            _scss: path.join(base_path, 'scss')
         }
     },
     module: {
@@ -35,8 +38,8 @@ module.exports = {
                 loader: 'babel-loader'
             },
             {
-                test: /\.css$/,
-                loader: 'style-loader!css-loader'
+                test: /\.scss$/,
+                loader: 'style-loader!css-loader!sass-loader'
             }
         ]
     }

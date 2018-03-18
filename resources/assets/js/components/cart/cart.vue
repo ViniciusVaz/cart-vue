@@ -1,21 +1,21 @@
 <template>
-    <div :class="['cart-list', { 'cart-list--active': toggle.toogle }]">
-        <div class="cart-list__header">
-            <div class="cart-list__header__close" @click="toogle()"></div>
-            <div class="cart-list__header__icon" :data-count="cart.count"></div>
+    <div :class="['cart', { 'cart--active': toggle.toogle }]">
+        <div class="cart__header">
+            <div class="cart__header__close" @click="toogle()"></div>
+            <div class="cart__header__icon" :data-count="cart.count"></div>
             <h3>Sacola</h3>
         </div>
-        <div class="cart-list__body">
+        <div class="cart__body">
             <template v-for="product in cart.products">
                 <cart-item :product="product"></cart-item>
             </template>
         </div>
-        <div class="cart-list__footer">
-            <div class="cart-list__footer__total total">
-                <span>Subtotal</span>
-                <span class="total__value"> R$ {{ cart.total }}</span>
+        <div class="cart__footer">
+            <div class="cart__footer__total total">
+                <span class="total__title">Subtotal</span>
+                <span class="total__value">R$ {{ formatPrice(cart.total) }}</span>
             </div>
-            <div class="cart-list__footer__button">
+            <div class="cart__footer__button">
                 Comprar
             </div>
         </div>
@@ -25,9 +25,10 @@
     import { mapState, mapActions } from 'vuex'
 
     import CartItem from '_components/cart/cart-item.vue'
+    import formatPrice from '_helpers/index'
 
     export default {
-        name: "Cart-list",
+        name: "Cart",
         components: {
             CartItem
         },
@@ -45,12 +46,13 @@
         methods: {
             ...mapActions([
                 'toogle',
-            ])
-        },
+            ]),
+            formatPrice
+        }
     }
 </script>
 <style lang="scss" scoped>
-    .cart-list {
+    .cart {
         font-family: 'Open-sans', 'sans-serif';
         position: fixed;
         top: 0;
@@ -62,7 +64,10 @@
         transform: translateX(100%);
         transition: all .4s ease;
         z-index: 1000;
-        padding: 0 20px;
+
+        @media screen and (max-width: 600px) {
+            
+        }
 
         &--active {
             transform: translateX(0);
@@ -75,15 +80,18 @@
             justify-content: center;
             height: 150px;
             border-bottom: 2px solid #131316;
+            margin: 0 20px;
 
             > h3 {
                 color: #fff;
                 padding-left: 20px;
                 text-transform: uppercase;
+                font-size: 24px;
+                font-weight: bold;
             }
             
             &__close {
-                    background-image: url('/images/close-white.png');
+                background-image: url('/images/close-white.png');
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: contain;
@@ -99,7 +107,7 @@
             &__icon {
                 background-image: url('/images/cart.png');
                 width: 35px;
-                height: 42px;
+                height: 41px;
                 position: relative;
 
                 &:after {
@@ -120,7 +128,14 @@
             }
         }
 
+        &__body {
+            overflow-y: auto;
+            max-height: calc(100vh - 300px);
+        }
+
         &__footer {
+            padding: 0 20px;
+
             &__total {
                 font-size: 18px;
                 font-weight: bold;
@@ -131,10 +146,19 @@
                 margin: 30px 0;
             }
 
-            .total__value {
-                color: #dfbd00;
-                font-weight: bold;
-                font-size: 24px;
+            .total {
+                &__title {
+                    text-transform: uppercase;
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: #878789;
+                }
+
+                &__value {
+                    color: #dfbd00;
+                    font-weight: bold;
+                    font-size: 24px;
+                }
             }
 
             &__button {
@@ -154,6 +178,5 @@
                 }
             }
         }
-
     }
 </style>

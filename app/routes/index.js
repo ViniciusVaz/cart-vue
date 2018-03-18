@@ -1,5 +1,5 @@
 module.exports = (app) => {
     app.get('/products', (req, res) => {
-        res.send(data)
+        app.app.controllers.index.getProducts( app, req, res )
     })
 }

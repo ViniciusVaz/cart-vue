@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <div class="header__content">
-            <div :class="['header__content__cart-icon', { 'hide': toggle.toogle }]" @click="toogle()"></div>
+            <div :class="['header__content__cart-icon']" @click="toogle()"></div>
         </div>
     </div>
 </template>
@@ -43,13 +43,9 @@
                 height: 42px;
                 position: absolute;
                 top: 3px;
-                right: 0;
+                right: 10px;
                 cursor: pointer;
             }
-        }
-
-        .hide {
-            opacity: 0;
         }
     }
 </style>

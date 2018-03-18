@@ -11,11 +11,11 @@
             </span>
             <div class="cart-item__details__block info">
                 <span class="info__quantity">
-                    Quantity: {{product.quantity}}
+                    Quantity: {{ product.quantity }}
                 </span>
                 <div class="info__price">
-                    <span class="info__price__currency">{{product.currencyFormat}}</span>
-                    <span class="info__price__value">{{product.price}}</span>
+                    <span class="info__price__currency">{{ product.currencyFormat }}</span>
+                    <span class="info__price__value">{{ formatPrice(product.price) }}</span>
                 </div>
             </div>
         </div>
@@ -23,12 +23,14 @@
 </template>
 <script>
     import { mapState, mapActions } from 'vuex'
+    import formatPrice from '_helpers/index'
 
     export default {
         methods: {
             ...mapActions([
                 'removeProduct'
-            ])
+            ]),
+            formatPrice
         },
         props: {
             product: {
@@ -42,6 +44,7 @@
     .cart-item {
         font-family: 'Open-sans', sans-serif;
         padding: 15px 0;
+        margin: 0 20px;
         border-bottom: 2px solid #131316;
         display: flex;
         align-items: center;

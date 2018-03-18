@@ -1,6 +1,6 @@
 <template>
     <div>
-        <cart-list></cart-list>
+        <cart></cart>
         <header-store></header-store>
         <product-list></product-list>
     </div>
@@ -8,13 +8,13 @@
 <script>
     import HeaderStore from "./header-store.vue"
     import ProductList from "./product/product-list.vue"
-    import CartList from "./cart/cart-list.vue"
+    import Cart from "./cart/cart.vue"
 
     export default {
         components: {
             ProductList,
             HeaderStore,
-            CartList
+            Cart
         }
     }
 </script>
