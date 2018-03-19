@@ -14,23 +14,23 @@ export default {
         count: 0
     },
     mutations: {
-        [ADD_PRODUCT] (state, product) {
-            let productExist = state.products.find(p => p.id === product.id)
-
+        [ADD_PRODUCT] (state, item) {
+            let productExist = state.products.find(p => (p.key === item.product.key ))
+            
             if (productExist) {
                 state.products = state.products.map(p => {
-                    if(p.id === product.id) {
+                    if(p.key === item.product.key) {
                         p.quantity += 1
                     }
 
                     return p
                 })
             } else {
-                Vue.set(product, 'quantity', 1)
-                state.products.push(product)
+                Vue.set(item.product, 'quantity', 1)
+                state.products.push(item.product)
             }
 
-            state.total += product.price
+            state.total += item.product.price
             state.count += 1
             
             growl.success('Added to cart')
@@ -48,6 +48,7 @@ export default {
     },
     actions: {
         addProduct ({ commit }, product) {
+            console.log(product)
             commit(ADD_PRODUCT, product)
         },
         removeProduct ({ commit }, { id }) {

@@ -9,6 +9,9 @@
             <span class="cart-item__details__name">
                 {{product.title}}
             </span>
+            <div class="cart-item__details__variation">
+                <span class="cart-item__details__variation__selected">{{product.selectedVariation}} | {{product.style}}</span>
+            </div>
             <div class="cart-item__details__block info">
                 <span class="info__quantity">
                     Quantity: {{ product.quantity }}
@@ -112,6 +115,10 @@
                 text-align: left;
                 margin: 0;
                 font-weight: 600;
+            }
+
+            &__variation {
+                width: 100%;
             }
 
             &__block {

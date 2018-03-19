@@ -7,6 +7,13 @@
             <div class="product-item__info__name">
                 {{ product.title }}
             </div>
+            <div class="product-item__info__variation variation">
+                <template v-for="(variation, key) in product.availableSizes">
+                    <div :class="['variation__option', activeVariation == key ? 'variation__option--active': '']" @click="selectVariation(key)">
+                        <label :for="'variation'+key" class="variation__option__label">{{variation}}</label>
+                    </div>
+                </template>
+            </div>
             <div class="product-item__info__price price">
                 <span class="price__currency">
                     {{ product.currencyFormat }}
@@ -16,7 +23,7 @@
                 </span>
             </div>
         </div>
-        <div class="product-item__button" @click="addProduct(product)">
+        <div class="product-item__button" @click="addProduct({product, activeVariation})">
             ADD TO CART
         </div>
     </div>
@@ -27,17 +34,28 @@
 
     export default {
         name: "Product-Item",
-        props: {
-            product: {
-                type: Object,
-                default: {}
+        data() {
+            return {
+                activeVariation: 0
             }
+        },
+        mounted () {
+            this.selectVariation(this.activeVariation)
         },
         methods: {
             ...mapActions([
                 'addProduct'
             ]),
-            formatPrice
+            formatPrice,
+            selectVariation(key) {
+                this.activeVariation = key
+                this.product.key = this.product.id + key.toString()
+            }
+        },
+        props: {
+            product: {
+                type: Object
+            }
         }
     }
 </script>
@@ -56,6 +74,35 @@
                 font-size: 14px;
                 height: 42px;
                 text-align: center;
+            }
+
+            .variation {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding-bottom: 10px;
+
+                &__option {
+                    min-width: 25px;
+                    height: 25px;
+                    background-color: #fff;
+                    margin: 0 5px;
+                    border: solid 1px #202025;
+
+                    &--active {
+                        background-color: #ccc;
+                    }
+
+                    &__label {
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 14px;
+                        cursor: pointer;
+                    }
+                }
             }
 
             &__price {
