@@ -7,7 +7,7 @@
         </div>
         <div class="cart__body">
             <template v-for="product in cart.products">
-                <cart-item :product="product"></cart-item>
+                <cart-item :key="product.sku" :product="product"></cart-item>
             </template>
         </div>
         <div class="cart__footer">
@@ -53,7 +53,6 @@
 </script>
 <style lang="scss" scoped>
     .cart {
-        font-family: 'Open-sans', 'sans-serif';
         position: fixed;
         top: 0;
         right: 0;

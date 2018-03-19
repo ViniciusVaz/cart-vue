@@ -53,7 +53,6 @@
 </script>
 <style lang="scss" scoped>
     .cart-item {
-        font-family: 'Open-sans', sans-serif;
         padding: 15px 20px;
         display: flex;
         align-items: center;
@@ -111,6 +110,7 @@
             margin-left: 15px;
 
             &__name {
+                font-size: 14px;
                 width: 100%;
                 text-align: left;
                 margin: 0;
@@ -119,12 +119,20 @@
 
             &__variation {
                 width: 100%;
+                line-height: 12px;
+
+                &__selected {
+                    font-weight: 300;
+                    font-size: 12px;
+                    color: #999999;
+                }
             }
 
             &__block {
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
+                line-height: 12px;
             }
 
             .info {

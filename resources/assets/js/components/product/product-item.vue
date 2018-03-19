@@ -9,7 +9,7 @@
             </div>
             <div class="product-item__info__variation variation">
                 <template v-for="(variation, key) in product.availableSizes">
-                    <div :class="['variation__option', activeVariation == key ? 'variation__option--active': '']" @click="selectVariation(key)">
+                    <div :key="key" :class="['variation__option', activeVariation == key ? 'variation__option--active': '']" @click="selectVariation(key)">
                         <label :for="'variation'+key" class="variation__option__label">{{variation}}</label>
                     </div>
                 </template>
@@ -23,8 +23,8 @@
                 </span>
             </div>
         </div>
-        <div class="product-item__button" @click="addProduct({product, activeVariation})">
-            ADD TO CART
+        <div class="product-item__button" @click="addProduct(product)">
+            Add to cart
         </div>
     </div>
 </template>
@@ -36,10 +36,12 @@
         name: "Product-Item",
         data() {
             return {
-                activeVariation: 0
+                activeVariation: 0,
+                product: {}
             }
         },
         mounted () {
+            this.product = Object.assign({}, this.item)
             this.selectVariation(this.activeVariation)
         },
         methods: {
@@ -49,11 +51,14 @@
             formatPrice,
             selectVariation(key) {
                 this.activeVariation = key
-                this.product.key = this.product.id + key.toString()
+                this.product = Object.assign({}, this.item, {
+                    key: this.item.id + key.toString(),
+                    selectedVariation: this.item.availableSizes[key]
+                })
             }
         },
         props: {
-            product: {
+            item: {
                 type: Object
             }
         }
@@ -61,7 +66,6 @@
 </script>
 <style lang="scss" scoped>
     .product-item {
-        font-family: 'Open Sans', sans-serif;
         width: 205px;
         padding: 0 15px 40px 15px;
 
@@ -139,10 +143,9 @@
             background-color: #000;
             border: 1px solid #fff;
             transition: background .4s ease;
-
+            text-transform: uppercase;
             font-size: 14px;
             color: #fff;
-            
             display: flex;
             align-items: center;
             justify-content: center;

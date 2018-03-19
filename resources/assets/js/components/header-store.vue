@@ -23,7 +23,6 @@
 </script>
 <style lang="scss" scoped>
     .header {
-        font-family: 'Open-sans', 'sans-serif';
         background-color: #0d0d0d;
         position: relative;
         width: 100%;

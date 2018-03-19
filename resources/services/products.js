@@ -4,7 +4,7 @@ class Products {
     getProducts () {
         return axios({
             method: 'get',
-            url: '//localhost/products',
+            url: '//localhost:8181/products',
             data: {}
         })
     }

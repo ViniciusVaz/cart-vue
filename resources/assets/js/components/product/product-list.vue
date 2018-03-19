@@ -1,7 +1,7 @@
 <template>
     <div class="product-list">
         <template v-for="product in products">
-            <product-item :product="product"></product-item>
+            <product-item :key="product.sku" :item="product"></product-item>
         </template>
     </div>
 </template>
@@ -36,7 +36,6 @@
 </script>
 <style lang="scss" scoped>
     .product-list {
-        font-family: 'Open-sans', 'sans-serif';
         max-width: 750px;
         display: flex;
         flex-wrap: wrap;

@@ -1,5 +1,12 @@
-var app = require('./config/server')
+const express = require('express')
+    , cors = require('cors')
+    , consign = require('consign')
+    , app = express()
 
-app.listen(80, () => {
-    console.log("I'm listing you at port 80")
+app.use(cors())
+
+consign().include('app/routes').then('app/controllers').into(app)
+
+app.listen(8181, () => {
+    console.log("I'm listing you at port 8181")
 })
