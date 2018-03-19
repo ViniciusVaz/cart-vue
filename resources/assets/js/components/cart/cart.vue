@@ -6,8 +6,8 @@
             <h3>Sacola</h3>
         </div>
         <div class="cart__body">
-            <template v-for="product in cart.products">
-                <cart-item :key="product.sku" :product="product"></cart-item>
+            <template v-for="(product, i) in cart.products">
+                <cart-item :key="i" :product="product"></cart-item>
             </template>
         </div>
         <div class="cart__footer">

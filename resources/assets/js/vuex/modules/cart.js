@@ -7,11 +7,13 @@ import growl from 'growl-alert'
 
 import Vue from 'vue'
 
+const cartStorage = JSON.parse(localStorage.getItem('cart'));
+
 export default {
     state: {
-        products: [],
-        total: 0,
-        count: 0
+        products: cartStorage ? cartStorage.products : [],
+        total: cartStorage ? cartStorage.total : 0,
+        count: cartStorage ? cartStorage.count : 0
     },
     mutations: {
         [ADD_PRODUCT] (state, product) {
@@ -32,6 +34,8 @@ export default {
 
             state.total += product.price
             state.count += 1
+
+            localStorage.setItem('cart', JSON.stringify(state));
             
             growl.success('Added to cart')
         },
@@ -39,6 +43,8 @@ export default {
             state.products = state.products.filter(p => p.key !== key)
             state.total = state.products.reduce((a, b) => a + (b.price * b.quantity), 0)
             state.count = state.products.length
+            
+            localStorage.setItem('cart', JSON.stringify(state));
 
             growl.success('Product removed')
         }
