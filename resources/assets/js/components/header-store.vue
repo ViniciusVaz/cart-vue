@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <div class="header__content">
-            <div :class="['header__content__cart-icon']" @click="toogle()"></div>
+            <div :class="['header__content__cart-icon']" :data-count="cart.count" @click="toogle()"></div>
         </div>
     </div>
 </template>
@@ -9,9 +9,15 @@
     import { mapState, mapActions } from 'vuex'
 
     export default {
+        data () {
+            return {
+                count: 0
+            }
+        },
         computed: {
             ...mapState([
-                'toggle'
+                'toggle',
+                'cart'
             ])
         },
         methods: {
@@ -38,12 +44,30 @@
                 background-image: url('/images/cart.png');
                 background-position: center;
                 background-repeat: no-repeat;
-                width: 35px;
+                background-size: contain;
+                width: 30px;
                 height: 42px;
                 position: absolute;
                 top: 3px;
                 right: 10px;
                 cursor: pointer;
+
+                &:after {
+                    content: attr(data-count);
+                    color: #000;
+                    background-color: #dfbd00;
+                    position: absolute;
+                    right: -5px;
+                    bottom: -5px;
+                    border-radius: 50%;
+                    width: 20px;
+                    height: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    font-size: 12px;
+                }
             }
         }
     }

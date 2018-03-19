@@ -1,24 +1,27 @@
 <template>
-    <div :class="['cart', { 'cart--active': toggle.toogle }]">
-        <div class="cart__header">
-            <div class="cart__header__close" @click="toogle()"></div>
-            <div class="cart__header__icon" :data-count="cart.count"></div>
-            <h3>Sacola</h3>
-        </div>
-        <div class="cart__body">
-            <template v-for="(product, i) in cart.products">
-                <cart-item :key="i" :product="product"></cart-item>
-            </template>
-        </div>
-        <div class="cart__footer">
-            <div class="cart__footer__total total">
-                <span class="total__title">Subtotal</span>
-                <span class="total__value">R$ {{ formatPrice(cart.total) }}</span>
+    <div>
+        <div :class="['cart', { 'cart--active': toggle.toogle }]">
+            <div class="cart__header">
+                <div class="cart__header__close" @click="toogle()"></div>
+                <div class="cart__header__icon" :data-count="cart.count"></div>
+                <h3>Sacola</h3>
             </div>
-            <div class="cart__footer__button">
-                Comprar
+            <div class="cart__body">
+                <template v-for="(product, i) in cart.products">
+                    <cart-item :key="i" :product="product"></cart-item>
+                </template>
+            </div>
+            <div class="cart__footer">
+                <div class="cart__footer__total total">
+                    <span class="total__title">Subtotal</span>
+                    <span class="total__value">R$ {{ formatPrice(cart.total) }}</span>
+                </div>
+                <div class="cart__footer__button">
+                    Comprar
+                </div>
             </div>
         </div>
+        <div class="overlay" v-if="toggle.toogle" @click="toogle()"></div>
     </div>
 </template>
 <script>
@@ -124,6 +127,7 @@
                     align-items: center;
                     justify-content: center;
                     font-weight: bold;
+                    font-size: 12px;
                 }
             }
         }
@@ -178,5 +182,15 @@
                 }
             }
         }
+    }
+    .overlay {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgba(32, 32, 37, 0.4);
+        cursor: pointer;
+        z-index: 10;
     }
 </style>
