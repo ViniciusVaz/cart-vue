@@ -77,6 +77,12 @@
                         text-decoration: line-through;
                     }
 
+                    &__variation {
+                        &__selected {
+                            text-decoration: line-through;
+                        }
+                    }
+
                     .info {
                         &__quantity {
                             text-decoration: line-through;
