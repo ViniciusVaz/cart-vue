@@ -17,7 +17,4 @@ describe('product.vue', () => {
 	it('check product functions', () => {
 		expect(typeof component.vm.addProduct).toBe('function')
 	})
-
-	
-
-}); // describe('[Org]', () => {...});
+});

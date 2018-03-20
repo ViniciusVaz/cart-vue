@@ -31,8 +31,6 @@
     "jasmine-core": "^3.1.0",
     "karma": "^2.0.0",
     "karma-chrome-launcher": "^2.2.0",
-    "karma-firefox-launcher": "^1.1.0",
-    "karma-ie-launcher": "^1.0.0",
     "karma-jasmine": "^1.1.1",
     "karma-safari-launcher": "^1.0.0",
     "karma-webpack": "^2.0.13",
@@ -41,6 +39,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "concurrently \"webpack-dev-server --inline --hot\" \"nodemon app\"",
+    "test": "karma start",
     "build:prod": "webpack --config webpack.config.js -p",
     "heroku-postbuild": "npm run build:prod"
   },
