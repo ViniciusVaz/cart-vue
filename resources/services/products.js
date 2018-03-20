@@ -1,12 +1,14 @@
 import axios from 'axios'
 
-const port = process.env.PORT || 5000
-
 class Products {
+    getUrl () {
+        return config.API_URL
+    }
+
     getProducts () {
         return axios({
             method: 'get',
-            url: `//localhost:${port}/products`,
+            url: `/products`,
             data: {}
         })
     }
