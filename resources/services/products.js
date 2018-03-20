@@ -9,7 +9,7 @@ class Products {
     getProducts () {
         return axios({
             method: 'get',
-            url: this.getUrl(),
+            url: this.getUrl() + 'products',
             data: {}
         })
     }

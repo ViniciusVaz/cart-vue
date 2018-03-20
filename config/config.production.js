@@ -1,3 +1,3 @@
 export default {
-    API_URL: '/products'
+    API_URL: '/'
 }
