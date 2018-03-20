@@ -1,7 +1,7 @@
 {
   "name": "cart-vue",
   "version": "1.0.0",
-  "description": "",
+  "description": "Cart example using vue, vuex. webpack and node.js",
   "main": "index.js",
   "dependencies": {
     "autoprefixer": "^8.1.0",
