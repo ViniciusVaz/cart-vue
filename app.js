@@ -11,5 +11,5 @@ app.use(express.static('./'))
 consign().include('app/controllers').then('app/routes').into(app)
 
 app.listen(port, () => {
-    console.log(`I'm listing you at port ${port}`)
+    console.log(`Server on port: ${port}`)
 })

@@ -1,3 +1,4 @@
+import config from '_config'
 import axios from 'axios'
 
 class Products {
@@ -8,7 +9,7 @@ class Products {
     getProducts () {
         return axios({
             method: 'get',
-            url: `/products`,
+            url: this.getUrl(),
             data: {}
         })
     }
