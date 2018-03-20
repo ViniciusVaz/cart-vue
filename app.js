@@ -5,6 +5,8 @@ const express = require('express')
 
 app.use(cors())
 
+app.use(express.static('./'))
+
 consign().include('app/routes').then('app/controllers').into(app)
 
 app.listen(8181, () => {

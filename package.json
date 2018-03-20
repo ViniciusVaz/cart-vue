@@ -39,7 +39,10 @@
     "webpack-dev-server": "^2.3.0"
   },
   "scripts": {
-    "start": "concurrently \"webpack-dev-server --inline --hot\" \"nodemon app\""
+    "start": "nodemon app.js",
+    "dev": "concurrently \"webpack-dev-server --inline --hot\" \"nodemon app\"",
+    "build:prod": "webpack --config webpack.config.js -p",
+    "heroku-postbuild": "npm run build:prod"
   },
   "repository": {
     "type": "git",
