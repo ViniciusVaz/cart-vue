@@ -1,6 +1,5 @@
-const data = require('../../products.json')
-module.exports = (app) => {
-    app.get('/products', (req, res) => {
-        res.send(data)
+module.exports = (application) => {
+    application.get('/products', (req, res) => {
+        application.app.controllers.index.getProducts( application, req, res )
     })
 }

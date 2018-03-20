@@ -8,7 +8,7 @@ app.use(cors())
 
 app.use(express.static('./'))
 
-consign().include('app/routes').then('app/controllers').into(app)
+consign().include('app/controllers').then('app/routes').into(app)
 
 app.listen(port, () => {
     console.log(`I'm listing you at port ${port}`)
