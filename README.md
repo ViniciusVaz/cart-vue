@@ -22,7 +22,7 @@ npm run dev
 Now you will see two messages
 ```
 Server on, port: 4004			
-Project is running at http://localhost:8081/
+Project is running at http://localhost:8081/ (Dynamic port)
 ```
 The first is the port number of your static server (If you want to change the port number we are talking about this below).
 The second one is the link of your aplication, go ahead copy and past this link in your browser.
@@ -32,7 +32,7 @@ The second one is the link of your aplication, go ahead copy and past this link 
 ----------
 By default we are using the server on port 4004, if you want to change this config you must to update these files: ```./app.js``` and ```./config/config.local```.
 
-./app.js (linha 4)
+./app.js (line 4)
 ```
 const express = require('express')
 	, cors = require('cors')
@@ -50,7 +50,7 @@ app.listen(port, () => {
 })
 ```
 
-./config/config.local (linha 1)
+./config/config.local (line 1)
 ```
 const port = process.env.PORT || 4004 //Default port number
 
